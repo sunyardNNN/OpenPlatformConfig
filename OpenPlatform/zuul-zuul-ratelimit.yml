@@ -1,0 +1,29 @@
+zuul:
+  routes:
+    preService:
+      path: zuul/**
+      service-id: preService
+    default:
+      path: /
+      service-id: default
+  servlet-path: /
+  #  URL配置Zuul路由设置超时
+  host:
+    #    connect-timeout-millis: 5000 #网关超时时间
+    #    socket-timeout-millis: 5000
+    max-total-connections: 200 #zuul路由最大连接数
+    connection-request-timeout-millis: 5000 #每个路由最大线程数
+  ratelimit: #网关对接口进行限流
+    enabled: true #启用开关
+    repository: IN_MEMORY #key存储类型，默认是IN_MEMORY本地内存
+    behind-proxy: true
+    default-policy-list: #全局限流策略，可单独细化到服务粒度
+    - limit: 10 #在一个单位时间窗口的请求数量
+      quota: 1000 #在一个单位时间窗口的请求时间限制
+      refresh-interval: 60 #单位时间窗口
+    #        type:
+    #          - user #可指定用户粒度
+    #          - origin #可指定客户端地址粒度
+    #          - url #可指定url粒度
+    post-filter-order: -2
+    pre-filter-order: -2

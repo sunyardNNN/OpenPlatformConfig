@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    include: ribbon-hystrix,zuul-ratelimit
+  datasource:
+    url: jdbc:oracle:thin:@172.1.1.26:1521:orcl
+    username: sundsos
+    password: sunds
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    #pool boot 2.0 默认Hikari连接池
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1 FROM DUAL #oracle
+server:
+  port: 443
+  ssl:
+    key-store: server.keystore
+    key-alias: tomcat
+    enabled: true
+    key-store-password: 123456
+    key-store-type: JKS
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.sunyard.zuul.domain;
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true #开启驼峰命名

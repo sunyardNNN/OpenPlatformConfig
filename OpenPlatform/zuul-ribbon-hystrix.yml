@@ -1,0 +1,24 @@
+#开启重试
+zuul:
+  retryable: true
+spring:
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+ribbon:
+  ConnectTimeout: 1000 #请求连接的超时时间
+  ReadTimeout: 2000 #请求处理的超时时间
+  MaxAutoRetriesNextServer: 1 #切换实例的重试次数
+  MaxAutoRetries: 2 #对当前实例的重试次数
+  OkToRetryOnAllOperations: false #重试所有操作
+  OkToRetryOnAllErrors: false #重试所有错误
+  OkToRetryOnConnectErrors: true #只重试网络错误
+#熔断时间一般设置大于Ribbon超时时间 （maxAutoRetries+maxAutoRetriesNextServer）*readTimeout
+hystrix:
+  command:
+    default: #默认设置
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 140000 #熔断超时时间
