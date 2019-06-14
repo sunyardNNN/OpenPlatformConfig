@@ -2,10 +2,10 @@ spring:
   profiles:
     include: ribbon-hystrix,zuul-ratelimit
   datasource:
-    url: jdbc:oracle:thin:@172.1.1.26:1521:orcl
-    username: sundsos
-    password: sunds
-    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:mysql://localhost:3306/plateform
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
     #pool boot 2.0 默认Hikari连接池
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -16,7 +16,7 @@ spring:
       pool-name: DatebookHikariCP
       max-lifetime: 1800000
       connection-timeout: 30000
-      connection-test-query: SELECT 1 FROM DUAL #oracle
+      connection-test-query: SELECT 1
 server:
   port: 443
   ssl:
