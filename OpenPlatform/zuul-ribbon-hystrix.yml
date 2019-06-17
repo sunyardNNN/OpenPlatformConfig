@@ -1,6 +1,6 @@
 #开启重试
 zuul:
-  retryable: true
+  retryable: false
 spring:
   cloud:
     loadbalancer:
