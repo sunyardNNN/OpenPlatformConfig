@@ -18,7 +18,15 @@ ribbon:
 hystrix:
   command:
     default: #默认设置
+      circuitBreaker: 
+        forceOpen: false
+        forceClosed: true
       execution:
         isolation:
+          strategy: THREAD
           thread:
             timeoutInMilliseconds: 140000 #熔断超时时间
+  threadpool:
+    default:
+      coreSize: 1
+      maxQueueSize: 1
