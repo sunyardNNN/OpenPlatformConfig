@@ -18,7 +18,7 @@ zuul:
     repository: IN_MEMORY #key存储类型，默认是IN_MEMORY本地内存
     behind-proxy: true
     default-policy-list: #全局限流策略，可单独细化到服务粒度
-    - limit: 10 #在一个单位时间窗口的请求数量
+    - limit: 60 #在一个单位时间窗口的请求数量
       quota: 1000 #在一个单位时间窗口的请求时间限制
       refresh-interval: 60 #单位时间窗口
     #        type:
