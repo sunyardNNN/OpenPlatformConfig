@@ -4,7 +4,7 @@ zuul:
       path: zuul/**
       service-id: preService
     default:
-      path: /
+      path: /**
       service-id: default
   servlet-path: /
   #  URL配置Zuul路由设置超时
