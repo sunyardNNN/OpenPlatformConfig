@@ -1,12 +1,9 @@
 zuul:
   routes:
     preService:
-      path: zuul/**
+      path: /preService/**
       service-id: preService
-    default:
-      path: /**
-      service-id: default
-  servlet-path: /
+  servlet-path: /gateway
   #  URL配置Zuul路由设置超时
   host:
     #    connect-timeout-millis: 5000 #网关超时时间
